@@ -8,4 +8,4 @@ script:
 - hugo
 branch:
  only:
- -master 
+ - master
