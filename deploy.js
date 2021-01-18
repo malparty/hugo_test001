@@ -31,6 +31,7 @@ sftp.connect({
     minTimeout: 100000,
     maxTimeout: 100000,
 })
+    .catch(()=>{}) // UGLY DO NOT REPRODUCE -- just to try :D
     .then(() => scanLocalFiles())
     .then(items => {
         if (!items || items.length < 1) throw new Error('Nothing to upload.');
