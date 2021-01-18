@@ -83,7 +83,7 @@ tag = "tags"
     simple = true
 
   [privacy.instagram]
-    disabled = false
+    disabled = true
     simple = true
 
   [privacy.youtube]
