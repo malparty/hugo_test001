@@ -1,11 +1,11 @@
 install:
 - wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb
 - sudo dpkg -i hugo*.deb
-- hugo version
+- npm install 
 before_script:
 - rm -rf public
-script:
 - hugo
+script:
 - npm run deploy
 branch:
  only:
