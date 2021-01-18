@@ -33,8 +33,9 @@ sftp.connect({
     .then(() => uploadFilesFor(itemsToUpload))
     .then(() => sftp.end())
     .catch(err => {
-        sftp.end();
+        console.log('Something wrong just happened - before end()');
         console.error(err);
+        sftp.end();
         process.exit(1);
     });
 
