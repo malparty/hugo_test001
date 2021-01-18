@@ -36,15 +36,15 @@ sftp.connect({
     .then(() => cleanRemote())
     .then(() => createDirecotriesFor(itemsToUpload))
     .then(() => uploadFilesFor(itemsToUpload))
-    .then(() => sftp.end())
-    .catch(err => {
-        console.log('Something wrong just happened - before end()');
-        console.error(err);
-        sftp.end();
-        console.log('Something wrong just happened - after end()');
+    .then(() => sftp.end());
+    // .catch(err => {
+    //     console.log('Something wrong just happened - before end()');
+    //     console.error(err);
+    //     sftp.end();
+    //     console.log('Something wrong just happened - after end()');
 
-        process.exit(1);
-    });
+    //     process.exit(1);
+    // });
 
 function scanLocalFiles() {
     let localPublicPathDirectory = upath.join(process.cwd(), 'public');
