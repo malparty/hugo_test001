@@ -47,6 +47,8 @@ sftp.connect({
     });
 
 function scanLocalFiles() {
+    console.log('Start scanLocalFiles');
+
     let localPublicPathDirectory = upath.join(process.cwd(), 'public');
     return glob(`${localPublicPathDirectory}/**/*`).then(globMatches => {
         let items = globMatches.map(path => {
@@ -65,6 +67,7 @@ function scanLocalFiles() {
 }
 
 function cleanRemote() {
+    console.log('Start cleanRemote');
 
     return sftp.list(remotePathBase)
         .then(objectsList => {
@@ -86,6 +89,8 @@ function cleanRemote() {
         });
 }
 function createDirecotriesFor(items) {
+    console.log('Start createDirecotriesFor');
+
     var directories = items.filter(path => path.isDirectory);
     return Promise.all(
         directories.map(dir => sftp.mkdir(dir.remotePath)
@@ -95,6 +100,8 @@ function createDirecotriesFor(items) {
 
 
 function uploadFilesFor(items) {
+    console.log('Start uploadFilesFor');
+
     var files = items.filter(path => !path.isDirectory);
     return Promise.all(files.map(
         f => sftp.put(f.localPath, f.remotePath)
