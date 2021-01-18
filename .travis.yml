@@ -6,6 +6,7 @@ before_script:
 - rm -rf public
 script:
 - hugo
+- npm run deploy
 branch:
  only:
  - master
