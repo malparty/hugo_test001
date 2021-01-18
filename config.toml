@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "https://code.malparty.fr"
 title = "Me testing Hugo!"
 languageCode = "en-us"
 DefaultContentLanguage = "en" # Change this to change the site's language
