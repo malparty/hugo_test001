@@ -1,5 +1,8 @@
 addons:
   ssh_known_hosts: ftp.cluster010.hosting.ovh.net
+  language: node_js
+node_js:
+  - node
 install:
 - wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb
 - sudo dpkg -i hugo*.deb
