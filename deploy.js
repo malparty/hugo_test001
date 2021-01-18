@@ -33,7 +33,7 @@ try {
         .then(() => cleanRemote())
         .then(() => createDirecotriesFor(itemsToUpload))
         .then(() => uploadFilesFor(itemsToUpload))
-        .then(() => sftp.end()));
+        .then(() => sftp.end());
 } catch (err) {
     console.log('Something wrong just happened - before end()');
     console.error(err);
