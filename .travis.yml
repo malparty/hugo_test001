@@ -10,6 +10,7 @@ install:
 - hugo version 
 - npm install 
 - npm version 
+- cat /home/travis/build/malparty/hugo_test001/node_modules/ssh2-sftp-client/src/index.js
 before_script:
 - rm -rf public
 - hugo
