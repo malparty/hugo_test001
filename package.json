@@ -1,0 +1,25 @@
+{
+  "name": "awesome-static-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malparty/hugo_test001.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malparty/hugo_test001/issues"
+  },
+  "homepage": "https://github.com/malparty/hugo_test001#readme",
+  "dependencies": {
+    "glob": "^7.1.6",
+    "ssh2-sftp-client": "^6.0.1",
+    "upath": "^2.0.1"
+  }
+}
