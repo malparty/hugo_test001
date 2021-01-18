@@ -34,10 +34,10 @@ sftp.connect({
     .then(() => sftp.end())
     .catch(err => {
         console.log('Something wrong just happened - before end()');
+        console.error(err);
         sftp.end();
         console.log('Something wrong just happened - after end()');
 
-        console.error(err);
         process.exit(1);
     });
 
