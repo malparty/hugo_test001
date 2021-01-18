@@ -26,7 +26,8 @@ sftp.connect({
     port: process.env.FTP_DEPLOY_PORT,
     username: process.env.FTP_DEPLOY_USERNAME,
     password: process.env.FTP_DEPLOY_PASSWORD,
-    debug:debugThat
+    debug:debugThat,
+    retries: 3
 })
     .then(() => scanLocalFiles())
     .then(items => {
@@ -43,7 +44,8 @@ sftp.connect({
         //sftp.end();
         console.log('Something wrong just happened - after end()');
 
-        process.exit(1);
+
+        //process.exit(1);
     });
 
 function scanLocalFiles() {
