@@ -28,7 +28,8 @@ sftp.connect({
     password: process.env.FTP_DEPLOY_PASSWORD,
     debug:debugThat,
     retries: 3,
-    minTimeout: 10000,
+    minTimeout: 100000,
+    maxTimeout: 100000,
 })
     .then(() => scanLocalFiles())
     .then(items => {
