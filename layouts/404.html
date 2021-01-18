@@ -1,0 +1,31 @@
+{{ define "main" }}
+
+<div class="row-fluid navmargin">
+    <div class="page-header">
+        <h1>ERROR</h1>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span9 bs-docs-sidebar">
+        <p class="lead">BLUE SCREEN</p>
+        <p></p>
+        <p>The page you are trying to reach is not available...</p>
+        <p></p>
+        
+    </div>
+
+    <div class="span3 bs-docs-sidebar">
+        <h1>{{ i18n "categories" }}</h1>
+        <ul class="nav nav-list bs-docs-sidenav">
+            {{ partial "categories.html" .}}
+        </ul>
+        <p></p>
+        <h1>{{ i18n "tags" }}</h1>
+        <ul class="nav nav-list bs-docs-sidenav">
+            {{ partial "tags.html" .}}
+        </ul>
+    </div>
+</div>
+
+{{ end }}
