@@ -17,12 +17,16 @@ if (!process.env.FTP_DEPLOY_PORT) throw new Error('Env variable FTP_DEPLOY_PORT 
 if (!process.env.FTP_DEPLOY_USERNAME) throw new Error('Env variable FTP_DEPLOY_USERNAME not declared');
 if (!process.env.FTP_DEPLOY_PASSWORD) throw new Error('Env variable FTP_DEPLOY_PASSWORD not declared');
 
+function debugThat(msg){
+    console.log(msg);
+}
+
 sftp.connect({
     host: process.env.FTP_DEPLOY_HOST,
     port: process.env.FTP_DEPLOY_PORT,
     username: process.env.FTP_DEPLOY_USERNAME,
     password: process.env.FTP_DEPLOY_PASSWORD,
-    debug:(msg)=>{console.log(msg);}
+    debug:debugThat
 })
     .then(() => scanLocalFiles())
     .then(items => {
