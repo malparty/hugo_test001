@@ -5,6 +5,7 @@ install:
 - sudo dpkg -i hugo*.deb
 - hugo version 
 - npm install 
+- npm version 
 before_script:
 - rm -rf public
 - hugo

@@ -23,23 +23,23 @@ sftp.connect({
     username: process.env.FTP_DEPLOY_USERNAME,
     password: process.env.FTP_DEPLOY_PASSWORD,
 })
-.then(() => sftp.end());
+    .then(() => scanLocalFiles())
+    .then(items => {
+        if (!items || items.length < 1) throw new Error('Nothing to upload.');
+        itemsToUpload = items;
+    })
+    .then(() => cleanRemote())
+    .then(() => createDirecotriesFor(itemsToUpload))
+    .then(() => uploadFilesFor(itemsToUpload))
+    .then(() => sftp.end())
+    .catch(err => {
+        console.log('Something wrong just happened - before end()');
+        sftp.end();
+        console.log('Something wrong just happened - after end()');
 
-    // .then(() => scanLocalFiles())
-    // .then(items => {
-    //     if (!items || items.length < 1) throw new Error('Nothing to upload.');
-    //     itemsToUpload = items;
-    // })
-    // .then(() => cleanRemote())
-    // .then(() => createDirecotriesFor(itemsToUpload))
-    // .then(() => uploadFilesFor(itemsToUpload))
-    // .then(() => sftp.end())
-    // .catch(err => {
-    //     console.log('Something wrong just happened - before end()');
-    //     console.error(err);
-    //     sftp.end();
-    //     process.exit(1);
-    // });
+        console.error(err);
+        process.exit(1);
+    });
 
 function scanLocalFiles() {
     let localPublicPathDirectory = upath.join(process.cwd(), 'public');
