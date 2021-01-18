@@ -22,6 +22,7 @@ sftp.connect({
     port: process.env.FTP_DEPLOY_PORT,
     username: process.env.FTP_DEPLOY_USERNAME,
     password: process.env.FTP_DEPLOY_PASSWORD,
+    debug:true
 })
     .then(() => scanLocalFiles())
     .then(items => {

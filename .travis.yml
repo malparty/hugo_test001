@@ -1,16 +1,16 @@
 addons:
   ssh_known_hosts: ftp.cluster010.hosting.ovh.net
-  language: node_js
-node_js:
-  - 15
-  - 14
+#   language: node_js
+# node_js:
+#   - 15
+#   - 14
 install:
 - wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_0.80.0_Linux-64bit.deb
 - sudo dpkg -i hugo*.deb
 - hugo version 
 - npm install 
-- npm version 
-- cat /home/travis/build/malparty/hugo_test001/node_modules/ssh2-sftp-client/src/index.js
+# - npm version 
+# - cat /home/travis/build/malparty/hugo_test001/node_modules/ssh2-sftp-client/src/index.js
 before_script:
 - rm -rf public
 - hugo
