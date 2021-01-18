@@ -34,7 +34,7 @@ sftp.connect({
     .catch(()=>{}) // UGLY DO NOT REPRODUCE -- just to try :D
     .then(()=> {return new Promise(function(resolve) {
         setTimeout(resolve, 120000);
-    }) // Timer to let the sftp connect!!!
+    });}) // Timer to let the sftp connect!!!
     .then(() => scanLocalFiles())
     .then(items => {
         if (!items || items.length < 1) throw new Error('Nothing to upload.');
