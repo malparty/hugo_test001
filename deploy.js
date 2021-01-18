@@ -17,29 +17,29 @@ if (!process.env.FTP_DEPLOY_PORT) throw new Error('Env variable FTP_DEPLOY_PORT 
 if (!process.env.FTP_DEPLOY_USERNAME) throw new Error('Env variable FTP_DEPLOY_USERNAME not declared');
 if (!process.env.FTP_DEPLOY_PASSWORD) throw new Error('Env variable FTP_DEPLOY_PASSWORD not declared');
 
+sftp.connect({
+    host: process.env.FTP_DEPLOY_HOST,
+    port: process.env.FTP_DEPLOY_PORT,
+    username: process.env.FTP_DEPLOY_USERNAME,
+    password: process.env.FTP_DEPLOY_PASSWORD,
+})
+.then(() => sftp.end());
 
-try {
-    sftp.connect({
-        host: process.env.FTP_DEPLOY_HOST,
-        port: process.env.FTP_DEPLOY_PORT,
-        username: process.env.FTP_DEPLOY_USERNAME,
-        password: process.env.FTP_DEPLOY_PASSWORD,
-    })
-        .then(() => scanLocalFiles())
-        .then(items => {
-            if (!items || items.length < 1) throw new Error('Nothing to upload.');
-            itemsToUpload = items;
-        })
-        .then(() => cleanRemote())
-        .then(() => createDirecotriesFor(itemsToUpload))
-        .then(() => uploadFilesFor(itemsToUpload))
-        .then(() => sftp.end());
-} catch (err) {
-    console.log('Something wrong just happened - before end()');
-    console.error(err);
-    sftp.end();
-    process.exit(1);
-}
+    // .then(() => scanLocalFiles())
+    // .then(items => {
+    //     if (!items || items.length < 1) throw new Error('Nothing to upload.');
+    //     itemsToUpload = items;
+    // })
+    // .then(() => cleanRemote())
+    // .then(() => createDirecotriesFor(itemsToUpload))
+    // .then(() => uploadFilesFor(itemsToUpload))
+    // .then(() => sftp.end())
+    // .catch(err => {
+    //     console.log('Something wrong just happened - before end()');
+    //     console.error(err);
+    //     sftp.end();
+    //     process.exit(1);
+    // });
 
 function scanLocalFiles() {
     let localPublicPathDirectory = upath.join(process.cwd(), 'public');
@@ -93,7 +93,7 @@ function uploadFilesFor(items) {
     var files = items.filter(path => !path.isDirectory);
     return Promise.all(files.map(
         f => sftp.put(f.localPath, f.remotePath)
-            .then(() => console.log(`Uploaded file: ${f.remotePath}`))
+        .then(()=> console.log(`Uploaded file: ${f.remotePath}`))
     )
     );
 
