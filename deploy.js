@@ -20,6 +20,14 @@ if (!process.env.FTP_DEPLOY_PASSWORD) throw new Error('Env variable FTP_DEPLOY_P
 function debugThat(msg){
     console.log(msg);
 }
+function catchThat(err) {
+    console.log('Something wrong just happened - before end()');
+    console.error(err);
+    sftp.end();
+    console.log('Something wrong just happened - after end()');
+
+    process.exit(1);
+}
 
 sftp.connect({
     host: process.env.FTP_DEPLOY_HOST,
@@ -28,23 +36,23 @@ sftp.connect({
     password: process.env.FTP_DEPLOY_PASSWORD,
     debug:debugThat
 })
-    .then(() => scanLocalFiles())
+.catch((err)=>{catchThat(err);})
+.then(() => scanLocalFiles())
+    .catch((err)=>{catchThat(err);})
     .then(items => {
         if (!items || items.length < 1) throw new Error('Nothing to upload.');
         itemsToUpload = items;
     })
+    .catch((err)=>{catchThat(err);})
     .then(() => cleanRemote())
+    .catch((err)=>{catchThat(err);})
     .then(() => createDirecotriesFor(itemsToUpload))
+    .catch((err)=>{catchThat(err);})
     .then(() => uploadFilesFor(itemsToUpload))
-    .then(() => sftp.end());
-    // .catch(err => {
-    //     console.log('Something wrong just happened - before end()');
-    //     console.error(err);
-    //     sftp.end();
-    //     console.log('Something wrong just happened - after end()');
-
-    //     process.exit(1);
-    // });
+    .catch((err)=>{catchThat(err);})
+    .then(() => sftp.end())
+    .catch((err)=>{catchThat(err);})
+    ;
 
 function scanLocalFiles() {
     let localPublicPathDirectory = upath.join(process.cwd(), 'public');
