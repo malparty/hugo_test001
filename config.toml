@@ -1,5 +1,5 @@
 baseURL = "https://code.malparty.fr"
-title = "Me testing Hugo!"
+title = "Me testing Hugo! With Netlify!"
 languageCode = "en-us"
 DefaultContentLanguage = "en" # Change this to change the site's language
 theme = "hugo.386"
@@ -19,7 +19,7 @@ preserveTaxonomyNames = true
     copyrightname = "JM Fergeau"
 
     # The url to use as link in the copyright name in the footer. Leave empty to use none.
-    copyrighturl = "http://jmf-portfolio.netlify.com"
+    copyrighturl = "https://malparty.fr"
 
     # Show the "built on Hugo" disclaimer
     showhugo = true
